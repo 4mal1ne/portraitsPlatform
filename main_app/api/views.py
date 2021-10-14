@@ -1,8 +1,9 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import viewsets
+
+from .serializers import WorksSerializer
+from ..models import Works
 
 
-class TestAPIView(APIView):
-    def get(self, request, *args, **kwargs):
-        data = [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]
-        return Response(data)
+class WorksViewSet(viewsets.ModelViewSet):
+    queryset = Works.objects.all()
+    serializer_class = WorksSerializer
